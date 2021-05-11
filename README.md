@@ -1,5 +1,4 @@
-# v2ray
-# v2ray quick installation
+# 一分钟v2ray
 # v2ray 一键安装，只需30s
 
 1. 解析好域名
