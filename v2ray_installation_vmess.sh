@@ -47,7 +47,7 @@ source ~/.bashrc
 curl  https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --issue -d "$domainName" --alpn -k ec-256
 ~/.acme.sh/acme.sh --installcert -d "$domainName" --fullchainpath $ssl_dir/v2ray.crt --keypath $ssl_dir/v2ray.key --ecc
-chmod 644 $ssl_dir/v2ray.*
+chown www-data.www-data $ssl_dir/v2ray.*
 
 
 ##创建WS路径,配置v2ray客户端时会用到[目录可以自定义]
