@@ -1,4 +1,4 @@
-# 一分钟v2ray
+# 一分钟v2ray：vmess+websocket+tls+nginx
 # v2ray 一键安装，只需30s
 
 1. 解析好域名
