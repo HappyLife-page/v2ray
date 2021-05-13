@@ -47,4 +47,4 @@ nginx做前端代理，分发443端口到xray，回落到nginx默认站点目录
 xray配置文件路径： /usr/local/etc/xray/config.json
 
 nginx配置文件路径： /etc/nginx/conf.d/xray.conf
-                   /etc/nginx/modules-enabled/stream.conf
+                      /etc/nginx/modules-enabled/stream.conf
