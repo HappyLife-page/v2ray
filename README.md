@@ -32,9 +32,7 @@ v2ray配置文件路径： /usr/local/etc/v2ray/config.json
 
 nginx配置文件路径： /etc/nginx/conf.d/v2ray.conf
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 2. xray安装： nginx+tcp+xtls+vless
 
