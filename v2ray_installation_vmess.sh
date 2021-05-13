@@ -2,25 +2,24 @@
 # Auth: happylife
 # Desc: v2ray installation script
 # Plat: ubuntu 18.04+
-# Eg  : bash v2ray_installation_vmess.sh "你的域名" "自定义端口即可"
+# Eg  : bash v2ray_installation_vmess.sh "你的域名"
 
 ##安装依赖包
 apt update
 apt install curl pwgen openssl netcat cron socat -y
 
 domainName="$1"
-port="$2"
-uuid="`cat /proc/sys/kernel/random/uuid`"
+port="`shuf -i 20000-65000 -n 1`"
+uuid="`uuidgen`"
 path="/`pwgen -A0 6 8 | xargs |sed 's/ /\//g'`"
 
-if [ -z "$1"  -o  -z "$2" ];then
-	echo "域名或端口不能为空"
+if [ -z "$domainName" ];then
+	echo "域名不能为空"
 	exit
 fi
 
 
 ##配置系统时区为东八区
-date -R
 rm -rf /etc/localtime
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
@@ -37,8 +36,8 @@ systemctl enable v2ray
 
 ##安装nginx
 apt install nginx -y
-systemctl enable nginx.service
-systemctl start nginx.service
+systemctl enable nginx
+systemctl start nginx
 
 
 ##安装acme,并申请加密证书
@@ -59,7 +58,7 @@ echo "
 server {
 	listen 80;
 	server_name "$domainName";
-	return 301 https://"'$server_name'""'$request_uri'";
+	return 301 https://"'$host'""'$request_uri'";
 
 }
 
@@ -77,7 +76,7 @@ server {
 	
 	location "$path" {
 		proxy_redirect off;
-		proxy_pass http://127.0.0.1:"$port"; #此IP地址和端口需要和v2ray服务器端配置保持一致
+		proxy_pass http://127.0.0.1:"$port";
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade "'"$http_upgrade"'";
 		proxy_set_header Connection '"'upgrade'"';
