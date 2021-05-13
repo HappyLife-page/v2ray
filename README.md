@@ -5,9 +5,9 @@
 解析好域名
 
 v2ray安装：
-执行curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s "你的解析好的域名" "22222-55555之间的一个五位数"
+执行curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s "你的解析好的域名"
 # EG：
-curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s kty.v2ray.one 33299
+curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s kty.v2ray.one
 
 vultr 5美元机器只需要不到30s部署完成
 
@@ -15,7 +15,7 @@ vultr 5美元机器只需要不到30s部署完成
 
 ######################################### 详细配置说明如下 #########################################
 
-1. v2ray安装：  nginx+websocket+tls+vmess
+v2ray安装：  nginx+websocket+tls+vmess
 
 nginx做前端代理，根据域名和websocket路径，分发请求到v2ray服务，或默认的nginx站点目录/usr/share/nginx/html，不对你现有的nginx web服务产生影响
 
