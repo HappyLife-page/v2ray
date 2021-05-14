@@ -25,8 +25,6 @@ vultr 5美元机器只需要不到30s部署完成
 
 ######################################### 详细配置说明如下 #########################################
 
-v2ray安装：  nginx+websocket+tls+vmess/vless
-
 nginx做前端代理，根据域名和websocket路径，分发请求到v2ray服务，或默认的nginx站点目录/usr/share/nginx/html，不对你现有的nginx web服务产生影响
 
 该方案不影响nginx作为前端代理和web服务的性能，v2ray只是其一个后端服务，类似PHP或Java
