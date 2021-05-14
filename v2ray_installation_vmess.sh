@@ -20,7 +20,7 @@ fi
 
 
 ##配置系统时区为东八区
-rm -rf /etc/localtime
+rm -f /etc/localtime
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 
@@ -41,7 +41,8 @@ systemctl start nginx
 
 
 ##安装acme,并申请加密证书
-ssl_dir="`mkdir -p /usr/local/etc/v2ray/ssl | awk -F"'" 'END{print $2}'`"
+## ssl_dir="`mkdir -p /usr/local/etc/v2ray/ssl | awk -F"'" 'END{print $2}'`"
+ssl_dir="/usr/local/etc/v2ray/ssl";! [ -d $ssl_dir ] && mkdir -p $ssl_dir
 source ~/.bashrc
 curl  https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --issue -d "$domainName" --alpn -k ec-256
