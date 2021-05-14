@@ -146,9 +146,9 @@ echo '
 ' > /usr/local/etc/v2ray/config.json
 
 ##重启v2ray和nginx
-systemctl restart v2ray && sleep 1
+systemctl restart v2ray
 systemctl status -l v2ray
-/usr/sbin/nginx -t && systemctl restart nginx.service 
+/usr/sbin/nginx -t && systemctl restart nginx
 
 ##输出配置信息
 echo
