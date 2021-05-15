@@ -4,45 +4,46 @@
 # Plat: ubuntu 18.04+
 # Eg  : bash v2ray_installation_vmess.sh "你的域名"
 
-##安装依赖包
-apt update
-apt install curl pwgen openssl netcat cron socat -y
-
-domainName="$1"
-port="`shuf -i 20000-65000 -n 1`"
-uuid="`uuidgen`"
-path="/`pwgen -A0 6 8 | xargs |sed 's/ /\//g'`"
-
-if [ -z "$domainName" ];then
+if [ -z "$1" ];then
 	echo "域名不能为空"
 	exit
 fi
 
+# 开始安装部署之前，我们先配置一下需要用到的参数，如下：
+# "域名，端口，uuid，ws路径，ssl证书目录"
+# 1.设置你的解析好的域名
+domainName="$1"
+# 2.随机生成v2ray需要用到的服务端口
+port="`shuf -i 20000-65000 -n 1`"
+# 3.随机生成一个uuid
+uuid="`uuidgen`"
+# 4.随机生成并创建一个websocket需要使用的目录path
+path="$(mkdir -pv "/`pwgen -A0 6 8 | xargs |sed 's/ /\//g'`" |awk -F"'" END'{print $2}')"
+# 5.以时间为基准随机创建一个存放ssl证书的目录
+ssl_dir="$(mkdir -pv "/usr/local/etc/v2ray/ssl/`date +"%F-%H-%M-%S"`" |awk -F"'" END'{print $2}')"
 
-##配置系统时区为东八区
+
+# 配置系统时区为东八区
 rm -f /etc/localtime
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 
-##使用v2ray官方命令安装v2ray
-curl -O https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
-curl -O https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-dat-release.sh
-
-bash install-release.sh
-bash install-dat-release.sh
-
-systemctl enable v2ray
-
-
-##安装nginx
-apt install nginx -y
+# 使用ubuntu官方源安装nginx和依赖包并设置开机启动
+apt update
+apt install nginx curl pwgen openssl netcat cron socat -y
 systemctl enable nginx
 systemctl start nginx
 
 
+# 使用v2ray官方命令安装v2ray并设置开机启动
+curl -O https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
+curl -O https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-dat-release.sh
+bash install-release.sh
+bash install-dat-release.sh
+systemctl enable v2ray
+
+
 ##安装acme,并申请加密证书
-## ssl_dir="`mkdir -p /usr/local/etc/v2ray/ssl | awk -F"'" 'END{print $2}'`"
-ssl_dir="/usr/local/etc/v2ray/ssl";! [ -d $ssl_dir ] && mkdir -p $ssl_dir
 source ~/.bashrc
 curl  https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --issue -d "$domainName" --alpn -k ec-256
@@ -50,11 +51,7 @@ curl  https://get.acme.sh | sh
 chown www-data.www-data $ssl_dir/v2ray.*
 
 
-##创建WS路径,配置v2ray客户端时会用到[目录可以自定义]
-mkdir -pv "$path" && chmod -R 644 "$path"
-
-
-##配置nginx
+# 配置nginx【如下80服务块完全可以不需要】
 echo "
 server {
 	listen 80;
@@ -87,7 +84,7 @@ server {
 }
 " > /etc/nginx/conf.d/v2ray.conf
 
-##配置v2ray
+# 配置v2ray
 echo '
 {
   "log" : {
@@ -141,12 +138,12 @@ echo '
 }
 ' > /usr/local/etc/v2ray/config.json
 
-##重启v2ray和nginx
+# 重启v2ray和nginx
 systemctl restart v2ray
 systemctl status -l v2ray
-/usr/sbin/nginx -t && systemctl restart nginx.service 
+/usr/sbin/nginx -t && systemctl restart nginx
 
-##输出配置信息
+# 输出配置信息
 echo
 echo "域名: $domainName"
 echo "端口: 443"
