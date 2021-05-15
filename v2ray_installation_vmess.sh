@@ -142,6 +142,7 @@ echo '
   }
 }
 ' > $v2rayConfig
+[ "vless" = "$2" ] && sed -i 's/vmess/vless/;/"level": 1/s/,//;/"alterId": 64/d' $v2rayConfig
 
 # 重启v2ray和nginx
 systemctl restart v2ray
@@ -153,5 +154,5 @@ echo
 echo "域名: $domainName"
 echo "端口: 443"
 echo "UUID: $uuid"
-echo "额外ID: 64"
+[ "vless" = "$2" ] && echo "协议：vless" || echo "额外ID: 64"
 echo "路径: $path"
