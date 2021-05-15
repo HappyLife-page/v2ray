@@ -14,7 +14,14 @@ rm -f /etc/localtime
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 
-# 开始安装部署之前，我们先配置一下需要用到的参数，如下：
+# 使用ubuntu官方源安装nginx和依赖包并设置开机启动
+apt update
+apt install nginx curl pwgen openssl netcat cron socat -y
+systemctl enable nginx
+systemctl start nginx
+
+
+# 开始部署之前，我们先配置一下需要用到的参数，如下：
 # "域名，端口，uuid，ws路径，ssl证书目录"
 # 1.设置你的解析好的域名
 domainName="$1"
@@ -26,13 +33,6 @@ uuid="`uuidgen`"
 path="$(mkdir -pv "/`pwgen -A0 6 8 | xargs |sed 's/ /\//g'`" |awk -F"'" END'{print $2}')"
 # 5.以时间为基准随机创建一个存放ssl证书的目录
 ssl_dir="$(mkdir -pv "/usr/local/etc/v2ray/ssl/`date +"%F-%H-%M-%S"`" |awk -F"'" END'{print $2}')"
-
-
-# 使用ubuntu官方源安装nginx和依赖包并设置开机启动
-apt update
-apt install nginx curl pwgen openssl netcat cron socat -y
-systemctl enable nginx
-systemctl start nginx
 
 
 # 使用v2ray官方命令安装v2ray并设置开机启动
