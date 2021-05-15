@@ -97,7 +97,7 @@ echo '
     "listen": "127.0.0.1",
     "protocol": "vmess",
     "settings": {
-      "decryption":"none"
+      "decryption":"none",
       "clients": [
         {
           "id": '"\"$uuid\""',
