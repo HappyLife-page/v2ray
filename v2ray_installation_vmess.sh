@@ -51,7 +51,7 @@ curl  https://get.acme.sh | sh
 chown www-data.www-data $ssl_dir/v2ray.*
 
 
-# 配置nginx【如下80服务块完全可以不需要】
+# 配置nginx【如下80服务块完全可以不需要】，执行如下命令即可添加nginx配置文件
 echo "
 server {
 	listen 80;
@@ -84,7 +84,7 @@ server {
 }
 " > /etc/nginx/conf.d/v2ray.conf
 
-# 配置v2ray
+# 配置v2ray，执行如下命令即可添加v2ray配置文件
 echo '
 {
   "log" : {
