@@ -97,6 +97,7 @@ echo '
     "listen": "127.0.0.1",
     "protocol": "vmess",
     "settings": {
+      "decryption":"none"
       "clients": [
         {
           "id": '"\"$uuid\""',
@@ -114,18 +115,23 @@ echo '
   },
   "outbound": {
     "protocol": "freedom",
-    "settings": {}
+    "settings": {
+      "decryption":"none"
+    }
   },
   "outboundDetour": [
     {
       "protocol": "blackhole",
-      "settings": {},
+      "settings": {
+        "decryption":"none"
+      },
       "tag": "blocked"
     }
   ],
   "routing": {
     "strategy": "rules",
     "settings": {
+      "decryption":"none",
       "rules": [
         {
           "type": "field",
