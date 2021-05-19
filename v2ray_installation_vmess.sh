@@ -23,7 +23,7 @@ systemctl start nginx
 
 
 # 开始部署之前，我们先配置一下需要用到的参数，如下：
-# "域名，端口，uuid，ws路径，ssl证书目录"
+# "域名，端口，uuid，ws路径，ssl证书目录，nginx和v2ray配置文件目录"
 # 1.设置你的解析好的域名
 domainName="$1"
 # 2.随机生成v2ray需要用到的服务端口
