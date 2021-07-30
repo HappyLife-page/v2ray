@@ -46,6 +46,7 @@ systemctl enable v2ray
 ##安装acme,并申请加密证书
 source ~/.bashrc
 curl  https://get.acme.sh | sh
+~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 ~/.acme.sh/acme.sh --issue -d "$domainName" --alpn -k ec-256
 ~/.acme.sh/acme.sh --installcert -d "$domainName" --fullchainpath $ssl_dir/v2ray.crt --keypath $ssl_dir/v2ray.key --ecc
 chown www-data.www-data $ssl_dir/v2ray.*
