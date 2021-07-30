@@ -19,7 +19,7 @@ vless安装：
 # EG：
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vless.sh | bash -s kty.v2ray.one
 
-vultr 5美元机器只需要不到30s部署完成
+vultr 5美元机器只需要不到30s部署完成【https://www.vultr.com/?ref=8773909】
 
 你完全不需要任何干预，一键执行脚本稍等片刻就好
 
