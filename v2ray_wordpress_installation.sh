@@ -275,18 +275,18 @@ systemctl status -l v2ray
 v2ray_wp_ins_info="/root/v2ray_wp_installation_info.txt"
 > $v2ray_wp_ins_info
 echo "----------v2ray配置信息----------"
-echo "域名: $domainName" | tee $v2ray_wp_ins_info
-echo "端口: 443"
-echo "UUID: $uuid"
-[ "vless" = "$2" ] && echo "协议：vless" | tee $v2ray_wp_ins_info || echo "额外ID: 64" | tee $v2ray_wp_ins_info
-echo "安全: tls" | tee $v2ray_wp_ins_info
-echo "传输: websocket" | tee $v2ray_wp_ins_info
-echo "路径: $v2ray_ws_path" | tee $v2ray_wp_ins_info
+echo "域名: $domainName" | tee -a $v2ray_wp_ins_info
+echo "端口: 443" | tee -a $v2ray_wp_ins_info
+echo "UUID: $uuid" | tee -a $v2ray_wp_ins_info
+[ "vless" = "$2" ] && echo "协议：vless" | tee -a $v2ray_wp_ins_info || echo "额外ID: 64" | tee -a $v2ray_wp_ins_info
+echo "安全: tls" | tee -a $v2ray_wp_ins_info
+echo "传输: websocket" | tee -a $v2ray_wp_ins_info
+echo "路径: $v2ray_ws_path" | tee -a $v2ray_wp_ins_info
 
 # 输出wp配置信息
 echo
 echo "----------wordpress配置信息----------"
-echo "你的域名: $domainName" | tee $v2ray_wp_ins_info
+echo "你的域名: $domainName" | tee -a $v2ray_wp_ins_info
 echo "MySQL root密码: $mysql_root_pwd" | tee -a $v2ray_wp_ins_info
 echo "wp库名: $wp_db_name" | tee -a $v2ray_wp_ins_info
 echo "wp用户名: $wp_user_name" | tee -a $v2ray_wp_ins_info
