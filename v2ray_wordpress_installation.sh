@@ -274,7 +274,7 @@ systemctl status -l v2ray
 # 输出v2ray配置信息
 v2ray_wp_ins_info="/root/v2ray_wp_installation_info.txt"
 > $v2ray_wp_ins_info
-echo "----------v2ray配置信息----------"
+echo "----------v2ray配置信息----------" | tee -a $v2ray_wp_ins_info
 echo "域名: $domainName" | tee -a $v2ray_wp_ins_info
 echo "端口: 443" | tee -a $v2ray_wp_ins_info
 echo "UUID: $uuid" | tee -a $v2ray_wp_ins_info
@@ -284,8 +284,7 @@ echo "传输: websocket" | tee -a $v2ray_wp_ins_info
 echo "路径: $v2ray_ws_path" | tee -a $v2ray_wp_ins_info
 
 # 输出wp配置信息
-echo
-echo "----------wordpress配置信息----------"
+echo -e "\n----------wordpress配置信息----------" | tee -a $v2ray_wp_ins_info
 echo "你的域名: $domainName" | tee -a $v2ray_wp_ins_info
 echo "MySQL root密码: $mysql_root_pwd" | tee -a $v2ray_wp_ins_info
 echo "wp库名: $wp_db_name" | tee -a $v2ray_wp_ins_info
