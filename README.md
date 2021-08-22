@@ -11,7 +11,7 @@ vmess安装：
 # EG：
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s kty.v2ray.one
 
-# ------------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 vless安装：
 
@@ -19,7 +19,9 @@ vless安装：
 或: curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s "你的解析好的域名"
 # EG：
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vless.sh | bash -s kty.v2ray.one
+
 或
+
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s kty.v2ray.one vless
 
 vultr 5美元机器只需要不到30s部署完成【https://www.vultr.com/?ref=8773909】
