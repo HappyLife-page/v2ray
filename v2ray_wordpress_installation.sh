@@ -136,7 +136,7 @@ server {
 	ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+ECDSA+AES128:EECDH+aRSA+AES128:RSA+AES128:EECDH+ECDSA+AES256:EECDH+aRSA+AES256:RSA+AES256:EECDH+ECDSA+3DES:EECDH+aRSA+3DES:RSA+3DES:!MD5;
 	ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
 	
-	root root ${wp_code_dir}/wordpress;
+	root ${wp_code_dir}/wordpress;
 	index index.php;
 
 # ---------------v2ray config beginning--------------- #	
