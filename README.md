@@ -41,3 +41,12 @@ nginx做前端代理，根据域名和websocket路径，分发请求到v2ray服�
 v2ray配置文件路径： /usr/local/etc/v2ray/config.json
 
 nginx配置文件路径： /etc/nginx/conf.d/v2ray.conf
+
+
+# # v2ray&wordpress安装部署
+curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_wordpress_installation.sh | bash -s "你的解析好的域名" [vless]
+# EG:
+#安装v2ray vmess协议 和 wordpress
+curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_wordpress_installation.sh | bash -s "www.v2ray.one"
+#安装v2ray vless协议 和 wordpress
+curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_wordpress_installation.sh | bash -s "www.v2ray.one" vless
