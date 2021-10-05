@@ -16,7 +16,7 @@ curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_instal
 # vless安装：
 
 终端执行命令: curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vless.sh | bash -s "你的解析好的域名"
-或: curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s "你的解析好的域名"
+或: curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s "你的解析好的域名" vless
 # EG：
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vless.sh | bash -s kty.v2ray.one
 
