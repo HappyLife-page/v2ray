@@ -128,8 +128,8 @@ server {
 	return 301 https://"'$host$request_uri'";
 }
 server {
-	listen 443 ssl http2 default_server;
-	listen [::]:443 ssl http2 default_server;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name "$domainName";
 	ssl_certificate $v2ray_ssl_dir/v2ray.crt;
 	ssl_certificate_key $v2ray_ssl_dir/v2ray.key;
