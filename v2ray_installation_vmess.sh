@@ -108,8 +108,7 @@ echo '
       "clients": [
         {
           "id": '"\"$uuid\""',
-          "level": 1,
-          "alterId": 64
+          "level": 1
         }
       ]
     },
@@ -153,7 +152,7 @@ echo '
 
 
 # 默认配置vmess协议，如果指定vless协议则配置vless协议
-[ "vless" = "$2" ] && sed -i 's/vmess/vless/;/"level": 1/s/,//;/"alterId": 64/d' $v2rayConfig
+[ "vless" = "$2" ] && sed -i 's/vmess/vless/' $v2rayConfig
 
 
 # 重启v2ray和nginx
@@ -167,7 +166,7 @@ echo
 echo "域名: $domainName"
 echo "端口: 443"
 echo "UUID: $uuid"
-[ "vless" = "$2" ] && echo "协议：vless" || echo "额外ID: 64"
+[ "vless" = "$2" ] && echo "协议：vless" || echo "额外ID: 0"
 echo "安全: tls"
 echo "传输: websocket"
 echo "路径: $path"
