@@ -208,8 +208,7 @@ echo '
       "clients": [
         {
           "id": '"\"$uuid\""',
-          "level": 1,
-          "alterId": 64
+          "level": 1
         }
       ]
     },
@@ -253,7 +252,7 @@ echo '
 
 
 # 默认配置vmess协议，如果指定vless协议则配置vless协议
-[ "vless" = "$2" ] && sed -i 's/vmess/vless/;/"level": 1/s/,//;/"alterId": 64/d' $v2rayConfig
+[ "vless" = "$2" ] && sed -i 's/vmess/vless/' $v2rayConfig
 
 
 # 配置php启动相关文件
@@ -278,7 +277,7 @@ echo "----------v2ray配置信息----------" | tee -a $v2ray_wp_ins_info
 echo "域名: $domainName" | tee -a $v2ray_wp_ins_info
 echo "端口: 443" | tee -a $v2ray_wp_ins_info
 echo "UUID: $uuid" | tee -a $v2ray_wp_ins_info
-[ "vless" = "$2" ] && echo "协议：vless" | tee -a $v2ray_wp_ins_info || echo "额外ID: 64" | tee -a $v2ray_wp_ins_info
+[ "vless" = "$2" ] && echo "协议：vless" | tee -a $v2ray_wp_ins_info || echo "额外ID: 0" | tee -a $v2ray_wp_ins_info
 echo "安全: tls" | tee -a $v2ray_wp_ins_info
 echo "传输: websocket" | tee -a $v2ray_wp_ins_info
 echo "路径: $v2ray_ws_path" | tee -a $v2ray_wp_ins_info
