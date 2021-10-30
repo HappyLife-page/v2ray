@@ -16,7 +16,7 @@ curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_instal
 # vless安装：
 
 终端执行命令: curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vless.sh | bash -s "你的解析好的域名"
-或: curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s "你的解析好的域名" vless
+# 或: curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vmess.sh | bash -s "你的解析好的域名" vless
 # EG：
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_vless.sh | bash -s kty.v2ray.one
 
@@ -53,3 +53,8 @@ curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_wordpr
 #安装v2ray vless协议 和 wordpress:
 
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_wordpress_installation.sh | bash -s "www.v2ray.one" vless
+
+## 客户端配置
+# 客户端下载： https://github.com/2dust/v2rayN/releases  选择最新稳定版下载
+# 如：
+# https://github.com/HappyLife-page/v2ray/issues/2#issuecomment-955123386
