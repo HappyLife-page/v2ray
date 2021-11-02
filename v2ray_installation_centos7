@@ -1,4 +1,4 @@
-  #!/bin/bash
+#!/bin/bash
 # Auth: happylife
 # Desc: v2ray installation script
 # Plat: centos7（不建议使用8）
@@ -12,6 +12,13 @@ fi
 # 关闭selinux
 setenforce 0
 sed -i '/^SELINUX/s/enforcing/disabled/' /etc/selinux/config
+
+
+# 开放80和443端口
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --zone=public --add-port=443/tcp --permanent
+firewall-cmd --reload
+
 
 # 同步时间并添加到计划任务
 ntpdate pool.ntp.org && hwclock -w
@@ -59,7 +66,7 @@ curl  https://get.acme.sh | sh
 chown nginx.nginx $ssl_dir/v2ray.*
 
 
-# 配置nginx【如下80服务块完全可以不需要】，执行如下命令即可添加nginx配置文件
+# 配置nginx，执行如下命令即可添加nginx配置文件
 echo "
 server {
 	listen 80;
