@@ -15,9 +15,10 @@ rm -f /etc/localtime
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 
-# 使用ubuntu官方源安装nginx,php,mysql和依赖包
+# 使用ubuntu官方源安装nginx,php,mysql和依赖包，关闭防火墙ufw
 apt update
 apt install nginx curl pwgen openssl netcat cron php php-fpm php-opcache php-mysql php-gd php-xmlrpc php-imagick php-mbstring php-zip php-json php-mbstring php-curl php-xml mariadb-server expect -y
+ufw disable
 
 
 # 开始部署之前，我们先配置一下需要用到的参数，如下：
