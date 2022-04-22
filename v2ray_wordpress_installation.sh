@@ -74,7 +74,7 @@ systemctl enable v2ray
 source ~/.bashrc
 ! [ -f ~/.acme.sh/acme.sh ] && curl https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-~/.acme.sh/acme.sh --issue -d "$domainName" --alpn -k ec-256
+~/.acme.sh/acme.sh --issue -d "$domainName" --alpn -k ec-256 --reloadcmd "nginx -s reload"
 ~/.acme.sh/acme.sh --installcert -d "$domainName" --fullchainpath $v2ray_ssl_dir/v2ray.crt --keypath $v2ray_ssl_dir/v2ray.key --ecc
 chown www-data.www-data $v2ray_ssl_dir/v2ray.*
 
