@@ -50,6 +50,8 @@ systemctl enable v2ray
 
 ##安装acme,并申请加密证书
 source ~/.bashrc
+if nc -z localhost 443;then /etc/init.d/nginx stop;fi
+if ! [ -d /root/.acme.sh ];then curl https://get.acme.sh | sh;fi
 curl  https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 ~/.acme.sh/acme.sh --issue -d "$domainName" -k ec-256 --alpn
