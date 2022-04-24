@@ -4,6 +4,12 @@
 # Auth : Happylife
 
 
+# 更新源
+apt clean all && apt update
+
+# 安装编译需要使用的依赖
+apt install git vim gettext build-essential autoconf libtool libpcre3-dev libev-dev libc-ares-dev automake libmbedtls-dev libsodium-dev libssl-dev pwgen -y 
+
 # ss安装包名
 ss_name="shadowsocks-libev"
 
@@ -24,12 +30,6 @@ ss_ip="$(curl ifconfig.me 2>/dev/null)"
 ss_port="`shuf -i 2000-36000 -n 1`"
 ss_password="$(pwgen -cny -r "\"\\;'\`" 26 1)"
 
-
-# 更新源
-apt clean all && apt update
-
-# 安装编译需要使用的依赖
-apt install git vim gettext build-essential autoconf libtool libpcre3-dev libev-dev libc-ares-dev automake libmbedtls-dev libsodium-dev libssl-dev -y 
 
 # 下载shadowsocks-libev源码并解压
 wget -c https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${ss_version}/${ss_fullName}.tar.gz -O - | tar xz -C "${ss_sourcePath}/"
