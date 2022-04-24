@@ -19,7 +19,8 @@ ss_sourcePath="/usr/local/src"
 # 定义ss安装目录
 ss_dir="/usr/local/${ss_fullNmae}"
 
-# 随机生成服务端口和密码
+# IP地址与随机生成服务端口和密码
+ss_ip="$(curl ifconfig.me 2>/dev/null)"
 ss_port="`shuf -i 2000-36000 -n 1`"
 ss_password="$(pwgen -cny -r "\"\\;'\`" 26 1)"
 
@@ -88,9 +89,12 @@ systemctl enable shadowsocks-libev
 systemctl start shadowsocks-libev
 systemctl status shadowsocks-libev
 
-# 输出ss端口和密码
+# 输出IP端口和密码
 echo "
+地址：$ss_ip
 端口: $ss_port
 密码: $ss_password
 加密：chacha20-ietf-poly1305
+插件：obfs-local
+选项：obfs=http
 "
