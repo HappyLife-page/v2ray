@@ -1,4 +1,4 @@
-# v2ray纯净安装，基于手动纯净部署命令的整理，内容一目了然。你可以理解为你手动执行时的每一个复制粘贴和修改文件的命令的合集，批处理而已
+# v2ray纯净安装（及shadowsocks纯净安装），基于手动纯净部署命令的整理，内容一目了然。你可以理解为你手动执行时的每一个复制粘贴和修改文件的命令的合集，批处理而已
 # 一分钟v2ray：vmess+websocket+tls+nginx
 # 一分钟v2ray：vless+websocket+tls+nginx
 # v2ray 一键安装，只需30s
@@ -43,6 +43,9 @@ v2ray配置文件路径： /usr/local/etc/v2ray/config.json
 
 nginx配置文件路径： /etc/nginx/conf.d/v2ray.conf
 
+
+# # shadowsocks部署 shadowsocks-libev with obfs
+curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/shadowsocks-libev_with_obfs_installation.sh | bash
 
 # # v2ray&wordpress安装部署
 curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_wordpress_installation.sh | bash -s "你的解析好的域名" [vless]
