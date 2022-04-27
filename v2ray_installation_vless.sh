@@ -107,17 +107,17 @@ echo '
       "decryption":"none",
       "clients": [
         {
-          "id": '"\"$uuid\""',
-          "level": 1
+        "id": '"\"$uuid\""',
+        "level": 1
         }
       ]
     },
-   "streamSettings":{
+    "streamSettings":{
       "network": "ws",
       "wsSettings": {
-           "path": '"\"$path\""'
+        "path": '"\"$path\""'
       }
-   }
+    }
   },
   "outbound": {
     "protocol": "freedom",
@@ -135,6 +135,25 @@ echo '
     }
   ],
   "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "domain": [
+              "geosite:cn"
+          ],
+          "outboundTag": "blocked",
+          "type": "field"
+        },
+        {
+            "ip": [
+                "geoip:cn"
+            ],
+            "outboundTag": "blocked",
+            "type": "field"
+        }
+      ]
+  },
+  "routing": {
     "strategy": "rules",
     "settings": {
       "decryption":"none",
@@ -148,6 +167,7 @@ echo '
     }
   }
 }
+
 ' > /usr/local/etc/v2ray/config.json
 
 # 重启v2ray和nginx
