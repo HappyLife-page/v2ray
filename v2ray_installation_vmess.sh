@@ -144,26 +144,7 @@ echo '
       },
       "tag": "blocked"
     }
-  ],
-  "routing": {
-      "domainStrategy": "IPIfNonMatch",
-      "rules": [
-        {
-          "domain": [
-              "geosite:cn"
-          ],
-          "outboundTag": "blocked",
-          "type": "field"
-        },
-        {
-            "ip": [
-                "geoip:cn"
-            ],
-            "outboundTag": "blocked",
-            "type": "field"
-        }
-      ]
-  },  
+  ], 
   "routing": {
     "strategy": "rules",
     "settings": {
