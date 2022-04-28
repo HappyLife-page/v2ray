@@ -245,26 +245,7 @@ echo '
       },
       "tag": "blocked"
     }
-  ],
-  "routing": {
-      "domainStrategy": "IPIfNonMatch",
-      "rules": [
-        {
-          "domain": [
-              "geosite:cn"
-          ],
-          "outboundTag": "blocked",
-          "type": "field"
-        },
-        {
-            "ip": [
-                "geoip:cn"
-            ],
-            "outboundTag": "blocked",
-            "type": "field"
-        }
-      ]
-  },  
+  ], 
   "routing": {
     "strategy": "rules",
     "settings": {
@@ -304,20 +285,24 @@ systemctl status -l v2ray
 # 输出v2ray配置信息
 v2ray_wp_ins_info="/root/v2ray_wp_installation_info.txt"
 > $v2ray_wp_ins_info
-echo "----------v2ray配置信息----------" | tee -a $v2ray_wp_ins_info
-echo "域名: $domainName" | tee -a $v2ray_wp_ins_info
-echo "端口: 443" | tee -a $v2ray_wp_ins_info
-echo "UUID: $uuid" | tee -a $v2ray_wp_ins_info
+echo "
+----------v2ray配置信息----------
+域名: $domainName
+端口: 443
+UUID: $uuid
+安全: tls
+传输: websocket
+路径: $v2ray_ws_path
+" | tee -a $v2ray_wp_ins_info
 [ "vless" = "$2" ] && echo "协议：vless" | tee -a $v2ray_wp_ins_info || echo "额外ID: 0" | tee -a $v2ray_wp_ins_info
-echo "安全: tls" | tee -a $v2ray_wp_ins_info
-echo "传输: websocket" | tee -a $v2ray_wp_ins_info
-echo "路径: $v2ray_ws_path" | tee -a $v2ray_wp_ins_info
 
 # 输出wp配置信息
-echo -e "\n----------wordpress配置信息----------" | tee -a $v2ray_wp_ins_info
-echo "你的域名: $domainName" | tee -a $v2ray_wp_ins_info
-echo "MySQL root密码: $mysql_root_pwd" | tee -a $v2ray_wp_ins_info
-echo "wp库名: $wp_db_name" | tee -a $v2ray_wp_ins_info
-echo "wp用户名: $wp_user_name" | tee -a $v2ray_wp_ins_info
-echo "wp密码: $wp_user_pwd" | tee -a $v2ray_wp_ins_info
-echo "wp源码目录: $wp_code_dir" | tee -a $v2ray_wp_ins_info
+echo "
+----------wordpress配置信息----------
+你的域名	   : $domainName
+MySQL root密码 : $mysql_root_pwd
+wp库名	     : $wp_db_name
+wp用户名	    : $wp_user_name
+wp密码	     : $wp_user_pwd
+wp源码目录     : $wp_code_dir
+" | tee -a $v2ray_wp_ins_info
