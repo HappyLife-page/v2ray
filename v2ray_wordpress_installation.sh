@@ -17,7 +17,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 使用ubuntu官方源安装nginx,php,mysql和依赖包，关闭防火墙ufw
 apt update
-apt install nginx curl pwgen openssl netcat cron php php-fpm php-opcache php-mysql php-gd php-xmlrpc php-imagick php-mbstring php-zip php-json php-mbstring php-curl php-xml mariadb-server expect -y
+apt install nginx curl pwgen openssl netcat cron php php-fpm php-opcache php-mysql php-gd php-xmlrpc php-imagick php-mbstring php-zip php-json php-mbstring php-curl php-xml mariadb-server memcached php-memcached php-memcache expect -y
 ufw disable
 
 
