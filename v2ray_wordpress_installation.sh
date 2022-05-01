@@ -158,7 +158,9 @@ server {
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade "'"$http_upgrade"'";
 		proxy_set_header Connection '"'upgrade'"';
-		proxy_set_header Host "'"$http_host"'";
+            	proxy_set_header Host "'"$host"'";
+            	proxy_set_header X-Real-IP "'"$remote_addr"'";
+            	proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
 	}
 # ------------------v2ray config end------------------ #	
 
@@ -269,7 +271,7 @@ echo '
 
 # 配置php启动相关文件
 ln -s /run/php/php*.sock /run/php/php-fpm.sock
-ln -s /etc/init.d/php*-fpm /etc/init.d/php-fpm
+
 # 删除apache并清理其依赖包
 /etc/init.d/apache2 stop
 apt purge apache2 -y && apt autoremove -y
