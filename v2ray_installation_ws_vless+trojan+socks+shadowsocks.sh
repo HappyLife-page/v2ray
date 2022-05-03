@@ -1,8 +1,8 @@
 #!/bin/bash
 # Auth: happylife
 # Desc: v2ray installation script
-# 		  ws+vless,ws+trojan,ws+socks,ws+shadowsocks
-#		    grpc+vless,grpc+trojan,grpc+socks,grpc+shadowsocks
+# 	ws+vless,ws+trojan,ws+socks,ws+shadowsocks
+#	grpc+vless,grpc+trojan,grpc+socks,grpc+shadowsocks
 # Plat: ubuntu 18.04+
 # Eg  : bash v2ray_installation_ws+grpc_vless+trojan+socks+shadowsocks.sh "你的域名"
 
@@ -64,9 +64,9 @@ chown www-data.www-data $domainSock_dir
 
 # 5.定义需要用到的domainSock文件名
 vless_ws_domainSock="${domainSock_dir}/vless_ws.sock"
-trojan_ws_domainsock="${domainSock_dir}/trojan_ws.sock"
+trojan_ws_domainSock="${domainSock_dir}/trojan_ws.sock"
 vless_grpc_domainSock="${domainSock_dir}/vless_grpc.sock"
-trojan_grpc_domainsock="${domainSock_dir}/trojan_grpc.sock"
+trojan_grpc_domainSock="${domainSock_dir}/trojan_grpc.sock"
 
 # 6.以时间为基准随机创建一个存放ssl证书的目录
 ssl_dir="$(mkdir -pv "/etc/nginx/ssl/`date +"%F-%H-%M-%S"`" |awk -F"'" END'{print $2}')"
@@ -130,9 +130,9 @@ server {
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade "'"$http_upgrade"'";
 		proxy_set_header Connection '"'upgrade'"';
-        proxy_set_header Host "'"$host"'";
-        proxy_set_header X-Real-IP "'"$remote_addr"'";
-        proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";		
+        	proxy_set_header Host "'"$host"'";
+        	proxy_set_header X-Real-IP "'"$remote_addr"'";
+        	proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";		
 	}	
 	
 	location = "$trojan_ws_path" {
@@ -141,9 +141,9 @@ server {
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade "'"$http_upgrade"'";
 		proxy_set_header Connection '"'upgrade'"';
-        proxy_set_header Host "'"$host"'";
-        proxy_set_header X-Real-IP "'"$remote_addr"'";
-        proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";		
+	        proxy_set_header Host "'"$host"'";
+	        proxy_set_header X-Real-IP "'"$remote_addr"'";
+	        proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";		
 	}	
 	
 	location = "$socks_ws_path" {
@@ -152,9 +152,9 @@ server {
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade "'"$http_upgrade"'";
 		proxy_set_header Connection '"'upgrade'"';
-        proxy_set_header Host "'"$host"'";
-        proxy_set_header X-Real-IP "'"$remote_addr"'";
-        proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";		
+	        proxy_set_header Host "'"$host"'";
+	        proxy_set_header X-Real-IP "'"$remote_addr"'";
+	        proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";		
 	}
 	
 	location = "$shadowsocks_ws_path" {
@@ -163,9 +163,9 @@ server {
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade "'"$http_upgrade"'";
 		proxy_set_header Connection '"'upgrade'"';
-        proxy_set_header Host "'"$host"'";
-        proxy_set_header X-Real-IP "'"$remote_addr"'";
-        proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";	
+	        proxy_set_header Host "'"$host"'";
+	        proxy_set_header X-Real-IP "'"$remote_addr"'";
+	        proxy_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";	
 	}	
 	# ------------------- WS配置部分结束 -------------------
 
@@ -173,33 +173,33 @@ server {
 	# ------------------ gRPC配置部分开始 ------------------
 	location ^~ "/$vless_grpc_path" {
 		proxy_redirect off;
-        grpc_set_header Host "'"$host"'";
-        grpc_set_header X-Real-IP "'"$remote_addr"'";
-        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
+	        grpc_set_header Host "'"$host"'";
+	        grpc_set_header X-Real-IP "'"$remote_addr"'";
+	        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
 		grpc_pass grpc://unix:"${vless_grpc_domainSock}";		
 	}
 	
 	location ^~ "/$trojan_grpc_path" {
 		proxy_redirect off;
-        grpc_set_header Host "'"$host"'";
-        grpc_set_header X-Real-IP "'"$remote_addr"'";
-        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
-		grpc_pass grpc://unix:"${trojan_grpc_domainsock}";	
+	        grpc_set_header Host "'"$host"'";
+	        grpc_set_header X-Real-IP "'"$remote_addr"'";
+	        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
+		grpc_pass grpc://unix:"${trojan_grpc_domainSock}";	
 	}	
 	
 	location ^~ "/$socks_grpc_path" {
 		proxy_redirect off;
-        grpc_set_header Host "'"$host"'";
-        grpc_set_header X-Real-IP "'"$remote_addr"'";
-        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
+	        grpc_set_header Host "'"$host"'";
+	        grpc_set_header X-Real-IP "'"$remote_addr"'";
+	        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
 		grpc_pass grpc://127.0.0.1:"$socks_grpc_port";	
 	}
 	
 	location ^~ "/$shadowsocks_grpc_path" {
 		proxy_redirect off;
-        grpc_set_header Host "'"$host"'";
-        grpc_set_header X-Real-IP "'"$remote_addr"'";
-        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
+	        grpc_set_header Host "'"$host"'";
+	        grpc_set_header X-Real-IP "'"$remote_addr"'";
+	        grpc_set_header X-Forwarded-For "'"$proxy_add_x_forwarded_for"'";
 		grpc_pass grpc://127.0.0.1:"$shadowsocks_grpc_port";		
 	}	
 	# ------------------ gRPC配置部分结束 ------------------	
