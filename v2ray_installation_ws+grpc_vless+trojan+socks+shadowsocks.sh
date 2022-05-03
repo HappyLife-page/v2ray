@@ -285,7 +285,7 @@ echo '
 		"settings": {
 			"decryption":"none",
 			"email": "",
-			"method": "chacha20-ietf-poly1305",
+			"method": "AES-128-GCM",
 			"password": '"\"$shadowsocks_passwd\""',
 			"level": 0,
 			"network": "tcp,udp",
@@ -367,7 +367,7 @@ echo '
 		"settings": {
 			"decryption":"none",
 			"email": "",
-			"method": "chacha20-ietf-poly1305",
+			"method": "AES-128-GCM",
 			"password": '"\"$shadowsocks_passwd\""',
 			"network": "tcp,udp",
 			"ivCheck": false,
@@ -464,6 +464,7 @@ WS路径	: $socks_ws_path
 -------- 4. shadowsocks+ws ---------
 协议	: shadowsocks
 密码	: $shadowsocks_passwd
+加密	：AES-128-GCM
 WS路径	: $shadowsocks_ws_path
 
 ------------ gRPC传输 -----------
@@ -485,6 +486,7 @@ WS路径	: $socks_grpc_path
 --------8. shadowsocks+grpc ---------
 协议	: shadowsocks
 密码	: $shadowsocks_passwd
+加密	：AES-128-GCM
 WS路径	: $shadowsocks_grpc_path
 
 " | tee $v2ray_config_info
