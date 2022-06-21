@@ -470,15 +470,18 @@ UUID	 : $uuid
 协议	: vless
 UUID	: $uuid
 路径	: $vless_grpc_path
+
 -----------6. trojan+grpc -----------
 协议	: trojan
 密码	: $trojan_passwd
 路径	: $trojan_grpc_path
+
 -----------7. socks+grpc ------------
 协议	: socks
 用户	：$socks_user
 密码	: $socks_passwd
 路径	: $socks_grpc_path
+
 --------8. shadowsocks+grpc ---------
 协议	: shadowsocks
 密码	: $shadowsocks_passwd
