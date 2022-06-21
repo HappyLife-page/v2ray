@@ -159,9 +159,9 @@ systemctl status -l v2ray
 /usr/sbin/nginx -t && systemctl restart nginx
 
 ##输出配置信息
-echo
-echo "域名: $domainName"
-echo "端口: 443"
-echo "协议: vless"
-echo "UUID: $uuid"
-echo "路径: $path"
+echo "
+域名: $domainName
+端口: 443
+协议: vless
+UUID: $uuid
+路径: $path"
