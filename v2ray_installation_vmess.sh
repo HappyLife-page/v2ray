@@ -52,7 +52,6 @@ systemctl enable v2ray
 source ~/.bashrc
 if nc -z localhost 443;then /etc/init.d/nginx stop;fi
 if ! [ -d /root/.acme.sh ];then curl https://get.acme.sh | sh;fi
-curl  https://get.acme.sh | sh
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 ~/.acme.sh/acme.sh --issue -d "$domainName" -k ec-256 --alpn
 ~/.acme.sh/acme.sh --installcert -d "$domainName" --fullchainpath $ssl_dir/v2ray.crt --keypath $ssl_dir/v2ray.key --ecc
@@ -175,11 +174,11 @@ systemctl status -l v2ray
 
 
 # 输出配置信息
-echo
-echo "域名: $domainName"
-echo "端口: 443"
-echo "UUID: $uuid"
+echo "
+域名: $domainName
+端口: 443
+UUID: $uuid
+安全: tls
+传输: websocket
+路径: $path"
 [ "vless" = "$2" ] && echo "协议：vless" || echo "额外ID: 0"
-echo "安全: tls"
-echo "传输: websocket"
-echo "路径: $path"
