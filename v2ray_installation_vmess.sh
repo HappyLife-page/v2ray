@@ -4,10 +4,9 @@
 # Plat: ubuntu 18.04+
 # Eg  : bash v2ray_installation_vmess.sh "你的域名" [vless]
 
-if [ -z "$1" ];then
-	echo "域名不能为空"
-	exit
-fi
+
+if [ -z "$1" ];then echo "域名不能为空";exit;fi
+if [ `id -u` -ne 0 ];then echo "需要root用户";exit;fi
 
 
 # 配置系统时区为东八区
@@ -16,7 +15,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 
 # 使用ubuntu官方源安装nginx和依赖包并设置开机启动，关闭防火墙ufw
-apt update
+apt clean all && apt update
 apt install nginx curl pwgen openssl netcat cron uuid-runtime -y
 systemctl enable nginx
 systemctl start nginx
