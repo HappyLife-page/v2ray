@@ -49,7 +49,7 @@ systemctl enable v2ray
 
 # 检查域名解析是否正确
 local_ip="$(curl ifconfig.me 2>/dev/null;echo)"
-resolve_ip="$(host "$1" | awk '{print $NF}')"
+resolve_ip="$(host "$domainName" | awk '{print $NF}')"
 if [ "$local_ip" != "$resolve_ip" ];then echo "域名解析不正确";exit 9;fi
 
 ##安装acme,并申请加密证书
