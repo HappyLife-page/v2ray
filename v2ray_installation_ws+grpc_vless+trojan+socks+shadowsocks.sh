@@ -6,10 +6,9 @@
 # Plat: ubuntu 18.04+
 # Eg  : bash v2ray_installation_ws+grpc_vless+trojan+socks+shadowsocks.sh "你的域名"
 
-if [ -z "$1" ];then
-	echo "域名不能为空"
-	exit
-fi
+
+if [ -z "$1" ];then echo "域名不能为空";exit;fi
+if [ `id -u` -ne 0 ];then echo "需要root用户";exit;fi
 
 # 配置系统时区为东八区,并设置时间为24H制
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
