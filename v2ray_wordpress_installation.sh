@@ -91,7 +91,7 @@ echo -n '#!/bin/bash
 /etc/init.d/nginx start
 ' > /usr/local/bin/ssl_renew.sh
 chmod +x /usr/local/bin/ssl_renew.sh
-(crontab -l;echo "15 03 */3 * * /usr/local/bin/ssl_renew.sh") | crontab
+(crontab -l;echo "15 03 * * * /usr/local/bin/ssl_renew.sh") | crontab
 
 
 # 执行mysql_secure_installation命令优化MySQL配置
