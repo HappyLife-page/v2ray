@@ -70,10 +70,10 @@ echo -n '#!/bin/bash
 /etc/init.d/nginx start
 ' > /usr/local/bin/ssl_renew.sh
 chmod +x /usr/local/bin/ssl_renew.sh
-(crontab -l;echo "15 03 */3 * * /usr/local/bin/ssl_renew.sh") | crontab
+(crontab -l;echo "15 03 * * * /usr/local/bin/ssl_renew.sh") | crontab
 
 
-# 配置nginx【如下80服务块完全可以不需要】，执行如下命令即可添加nginx配置文件
+# 配置nginx，执行如下命令即可添加nginx配置文件
 echo "
 server {
 	listen 80;
