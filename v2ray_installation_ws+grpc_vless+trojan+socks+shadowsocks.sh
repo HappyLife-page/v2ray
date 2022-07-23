@@ -95,8 +95,8 @@ if nc -z localhost 443;then /etc/init.d/nginx stop;fi
 if ! [ -d /root/.acme.sh ];then curl https://get.acme.sh | sh;fi
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 ~/.acme.sh/acme.sh --issue -d "$domainName" -k ec-256 --alpn
-~/.acme.sh/acme.sh --installcert -d "$domainName" --fullchainpath $ssl_dir/v2ray.crt --keypath $ssl_dir/v2ray.key --ecc
-chown www-data.www-data $ssl_dir/v2ray.*
+~/.acme.sh/acme.sh --installcert -d "$domainName" --fullchainpath $ssl_dir/${domainName}.crt --keypath $ssl_dir/${domainName}.key --ecc
+chown www-data.www-data $ssl_dir/${domainName}.*
 
 ## 把续签证书命令添加到计划任务
 echo -n '#!/bin/bash
