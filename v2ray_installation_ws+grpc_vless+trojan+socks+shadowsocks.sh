@@ -100,10 +100,20 @@ chown www-data.www-data $ssl_dir/v2ray.*
 
 ## 把续签证书命令添加到计划任务
 echo -n '#!/bin/bash
-/etc/init.d/nginx stop
-"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" &> /root/renew_ssl.log
-/etc/init.d/nginx start
-' > /usr/local/bin/ssl_renew.sh
+# Author: royoy
+# Desc: check the valid time of your domainName cer
+openssl_bin="$(which openssl)"
+current_time="$(date "+%Y %m %d %H %M %S")"' > /usr/local/bin/ssl_renew.sh
+echo -en 'cer_exp_time_eng="$($openssl_bin x509 -noout -dates -in' "${ssl_dir}/${domainName}.crt" '| awk -F"[=GMT]" '/notAfter/{print $2}')"' "\n" >> /usr/local/bin/ssl_renew.sh
+echo 'cer_exp_time_common="$(date "+%Y %m %d %H %M %S" -d "$cer_exp_time_eng")"' >> /usr/local/bin/ssl_renew.sh
+echo -e "valid_time=\"\$(awk 'BEGIN{exp_time=mktime(\"'\"\$cer_exp_time_common\"'\");cur_time=mktime(\"'\"\$current_time\"'\");days=(exp_time-cur_time)/86400;print days}')\"" >> /usr/local/bin/ssl_renew.sh
+echo -e '
+if [ $valid_time -le 3 ];then
+\t/etc/init.d/nginx stop
+\t"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" --force &> /root/renew_ssl.log
+\t/etc/init.d/nginx start
+fi
+' >> /usr/local/bin/ssl_renew.sh
 chmod +x /usr/local/bin/ssl_renew.sh
 if ! grep -q 'ssl_renew.sh' /var/spool/cron/crontabs/root;then (crontab -l;echo "15 03 * * * /usr/local/bin/ssl_renew.sh") | crontab;fi
 
