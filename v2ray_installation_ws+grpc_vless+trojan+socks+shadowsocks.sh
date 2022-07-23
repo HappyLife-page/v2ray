@@ -17,10 +17,10 @@ if ! grep -q 'LC_TIME' /etc/default/locale;then echo 'LC_TIME=en_DK.UTF-8' >> /e
 
 # 更新Ubuntu官方源，使用ubuntu官方源安装nginx和依赖包并设置开机启动，关闭防火墙ufw
 apt clean all && apt update
-apt install nginx curl pwgen openssl netcat cron uuid-runtime -y || {
+apt install nginx curl bc pwgen openssl netcat cron uuid-runtime -y || {
 dpkg --configure -a
 apt --fix-broken install -y
-apt install nginx curl pwgen openssl netcat cron uuid-runtime -y
+apt install nginx curl bc pwgen openssl netcat cron uuid-runtime -y
 }
 systemctl enable nginx
 ufw disable
@@ -118,7 +118,7 @@ chmod +x /usr/local/bin/ssl_renew.sh
 if ! grep -q 'ssl_renew.sh' /var/spool/cron/crontabs/root;then (crontab -l;echo "15 03 * * * /usr/local/bin/ssl_renew.sh") | crontab;fi
 
 
-# 配置nginx【如下80服务块完全可以不需要】，执行如下命令即可添加nginx配置文件
+# 配置nginx，执行如下命令即可添加nginx配置文件
 echo "
 server {
 	listen 80;
