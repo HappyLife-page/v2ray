@@ -104,11 +104,11 @@ echo -n '#!/bin/bash
 # Desc: check the valid time of your domainName cer
 openssl_bin="$(which openssl)"
 current_time="$(date "+%Y %m %d %H %M %S")"' > /usr/local/bin/ssl_renew.sh
-echo -en 'cer_exp_time_eng="$($openssl_bin x509 -noout -dates -in' "${ssl_dir}/${domainName}.crt" '| awk -F"[=GMT]" '/notAfter/{print $2}')"' "\n" >> /usr/local/bin/ssl_renew.sh
+echo -e "cer_exp_time_eng=\"\$(\$openssl_bin x509 -noout -dates -in $ssl_dir/${domainName}.crt | awk -F\"[=GMT]\" '/notAfter/{print \$2}')\"" >> /usr/local/bin/ssl_renew.sh
 echo 'cer_exp_time_common="$(date "+%Y %m %d %H %M %S" -d "$cer_exp_time_eng")"' >> /usr/local/bin/ssl_renew.sh
 echo -e "valid_time=\"\$(awk 'BEGIN{exp_time=mktime(\"'\"\$cer_exp_time_common\"'\");cur_time=mktime(\"'\"\$current_time\"'\");days=(exp_time-cur_time)/86400;print days}')\"" >> /usr/local/bin/ssl_renew.sh
 echo -e '
-if [ $valid_time -le 3 ];then
+if [ $(echo "$valid_time <= 7" |bc) -eq 1 ];then
 \t/etc/init.d/nginx stop
 \t"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" --force &> /root/renew_ssl.log
 \t/etc/init.d/nginx start
