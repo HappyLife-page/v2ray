@@ -99,7 +99,7 @@ if ! [ -d /root/.acme.sh ];then curl https://get.acme.sh | sh;fi
 chown www-data.www-data $ssl_dir/${domainName}.*
 
 ## 把续签证书命令添加到计划任务
-echo -n '#!/bin/bash
+echo '#!/bin/bash
 # Author: royoy
 # Desc: check the valid time of your domainName cer
 openssl_bin="$(which openssl)"
@@ -112,8 +112,7 @@ if [ $(echo "$valid_time <= 7" |bc) -eq 1 ];then
 \t/etc/init.d/nginx stop
 \t"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" --force &> /root/renew_ssl.log
 \t/etc/init.d/nginx start
-fi
-' >> /usr/local/bin/ssl_renew.sh
+fi' >> /usr/local/bin/ssl_renew.sh
 chmod +x /usr/local/bin/ssl_renew.sh
 if ! grep -q 'ssl_renew.sh' /var/spool/cron/crontabs/root;then (crontab -l;echo "15 03 * * * /usr/local/bin/ssl_renew.sh") | crontab;fi
 
