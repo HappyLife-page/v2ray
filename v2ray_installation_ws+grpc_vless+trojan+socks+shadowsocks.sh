@@ -110,7 +110,7 @@ echo -e "valid_time=\"\$(awk 'BEGIN{exp_time=mktime(\"'\"\$cer_exp_time_common\"
 echo -e '
 if [ $(echo "$valid_time <= 7" |bc) -eq 1 ];then
 \t/etc/init.d/nginx stop
-\t"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" --force &> /root/renew_ssl.log
+\twait;"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" --force &> /root/renew_ssl.log
 \t/etc/init.d/nginx start
 fi' >> /usr/local/bin/ssl_renew.sh
 chmod +x /usr/local/bin/ssl_renew.sh
