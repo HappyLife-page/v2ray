@@ -87,7 +87,7 @@ chown www-data.www-data $v2ray_ssl_dir/v2ray.*
 ## 把申请证书命令添加到计划任务
 echo -n '#!/bin/bash
 /etc/init.d/nginx stop
-"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" &> /root/renew_ssl.log
+wait;"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" &> /root/renew_ssl.log
 /etc/init.d/nginx start
 ' > /usr/local/bin/ssl_renew.sh
 chmod +x /usr/local/bin/ssl_renew.sh
