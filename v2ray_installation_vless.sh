@@ -47,6 +47,10 @@ bash install-release.sh
 bash install-dat-release.sh
 systemctl enable v2ray
 
+# 修正官方5.1+版本安装脚本启动命令错误
+grep -r 'v2ray -config' /etc/systemd/system/* | cut -d: -f1 | xargs -i sed -i 's/v2ray -config/v2ray run -config/' {}
+systemctl daemon-reload
+
 
 # 检查域名解析是否正确
 local_ip="$(curl ifconfig.me 2>/dev/null;echo)"
