@@ -85,7 +85,8 @@ chown -R www-data.www-data /var/log/v2ray
 # 3.修改v2ray默认用户为www-data
 sed -i '/User=nobody/cUser=www-data' /etc/systemd/system/v2ray.service
 sed -i '/User=nobody/cUser=www-data' /etc/systemd/system/v2ray@.service
-# 4.重新加载v2ray服务文件
+# 4.修正官方5.1+版本安装脚本启动命令错误，重新加载v2ray服务文件
+grep -r 'v2ray -config' /etc/systemd/system/* | cut -d: -f1 | xargs -i sed -i 's/v2ray -config/v2ray run -config/' {}
 systemctl daemon-reload
 
 
