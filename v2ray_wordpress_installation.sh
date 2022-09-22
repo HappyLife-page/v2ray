@@ -36,8 +36,8 @@ v2rayPort="`shuf -i 20000-65000 -n 1`"
 # 3.随机生成一个uuid
 uuid="`uuidgen`"
 
-# 4.随机生成并创建一个websocket需要使用的目录path
-v2ray_ws_path="$(mkdir -pv "/`pwgen -A0 6 8 | xargs |sed 's/ /\//g'`" |awk -F"'" END'{print $2}')"
+# 4.随机生成一个websocket需要使用的path
+v2ray_ws_path="/`pwgen -A0 6 8 | xargs |sed 's/ /\//g'`"
 
 # 5.以时间为基准随机创建一个存放ssl证书的目录
 v2ray_ssl_dir="$(mkdir -pv "/usr/local/etc/v2ray/ssl/`date +"%F-%H-%M-%S"`" |awk -F"'" END'{print $2}')"
