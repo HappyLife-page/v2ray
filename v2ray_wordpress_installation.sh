@@ -303,7 +303,7 @@ UUID: $uuid
 安全: tls
 传输: websocket
 路径: $v2ray_ws_path
-" | tee -a $v2ray_wp_ins_info
+" | tee $v2ray_wp_ins_info
 [ "vless" = "$2" ] && echo "协议：vless" | tee -a $v2ray_wp_ins_info || echo "额外ID: 0" | tee -a $v2ray_wp_ins_info
 
 # 输出wp配置信息
