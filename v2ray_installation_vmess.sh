@@ -166,7 +166,7 @@ echo '
       "rules": [
         {
           "type": "field",
-          "ip": [ "geoip:private" ],
+          "ip": [ "geoip:cn" ],
           "outboundTag": "blocked"
         }
       ]
