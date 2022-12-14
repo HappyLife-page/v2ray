@@ -262,8 +262,13 @@ echo '
       "decryption":"none",
       "rules": [
         {
+          "domain": [ "geosite:cn" ],
+          "outboundTag": "blocked",
+          "type": "field"
+        }, 
+	{
           "type": "field",
-          "ip": [ "geoip:private" ],
+          "ip": [ "geoip:cn" ],
           "outboundTag": "blocked"
         }
       ]
