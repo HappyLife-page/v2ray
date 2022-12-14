@@ -425,19 +425,6 @@ echo '
             "type": "field"
         }
       ]
-  },  
-  "routing": {
-    "strategy": "rules",
-    "settings": {
-      "decryption":"none",
-      "rules": [
-        {
-          "type": "field",
-          "ip": [ "geoip:private" ],
-          "outboundTag": "blocked"
-        }
-      ]
-    }
   }
 }
 ' > /usr/local/etc/v2ray/config.json
