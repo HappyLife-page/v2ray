@@ -218,6 +218,9 @@ server {
 }
 " > /etc/nginx/conf.d/v2ray.conf
 
+# 创建v2ray配置文件目录（01/16/2023最新版默认没有创建该目录）
+mkdir -pv /usr/local/etc/v2ray
+
 # 配置v2ray，执行如下命令即可添加v2ray配置文件
 echo '
 {
