@@ -61,9 +61,10 @@ trojan_grpc_path="$(pwgen -1scn 12)$(pwgen -1scny -r "\!@#$%^&*()-+={}[]|:\";',/
 socks_grpc_path="$(pwgen -1scn 12)$(pwgen -1scny -r "\!@#$%^&*()-+={}[]|:\";',/?><\`~" 36)"
 shadowsocks_grpc_path="$(pwgen -1scn 12)$(pwgen -1scny -r "\!@#$%^&*()-+={}[]|:\";',/?><\`~" 36)"
 
-# 7.创建需要用的domainSock目录,并授权nginx用户权限
+# 7.创建需要用的domainSock目录,	授权nginx用户权限，并添加开机自动创建
 domainSock_dir="/run/v2ray";! [ -d $domainSock_dir ] && mkdir -pv $domainSock_dir
 chown www-data.www-data $domainSock_dir
+echo 'd /var/run/v2ray 0755 www-data www-data' > /usr/lib/tmpfiles.d/custom.conf
 
 # 8.定义需要用到的domainSock文件名
 vless_ws_domainSock="${domainSock_dir}/vless_ws.sock"
