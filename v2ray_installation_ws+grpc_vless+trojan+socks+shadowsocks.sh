@@ -78,6 +78,7 @@ ssl_dir="$(mkdir -pv "/etc/nginx/ssl/`date +"%F-%H-%M-%S"`" |awk -F"'" END'{prin
 # 使用v2ray官方命令安装v2ray并修改用户为www-data和重新加载服务文件
 # 1.官方命令安装v2ray
 bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) --version 5.1.0
+systemctl enable v2ray
 # 2.修改v2ray日志目录权限为www-data
 chown -R www-data.www-data /var/log/v2ray
 # 3.修改v2ray默认用户为www-data
