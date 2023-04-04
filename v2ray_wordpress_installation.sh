@@ -295,6 +295,9 @@ systemctl restart v2ray
 systemctl status -l v2ray
 /usr/sbin/nginx -t && systemctl restart nginx
 
+# 添加php开机启动服务
+systemctl enable php7.4-fpm
+
 
 # 输出配置信息并保存到文件
 # 输出v2ray配置信息
