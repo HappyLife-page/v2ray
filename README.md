@@ -29,8 +29,8 @@ vultr 6美元机器只需要不到30s部署完成【https://www.vultr.com/?ref=8
 
 你完全不需要任何干预，一键执行脚本稍等片刻就好
 
-新增八合一:
-curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_ws%2Bgrpc_vless%2Btrojan%2Bsocks%2Bshadowsocks.sh | bash -s "你的域名"
+- # 新增八合一:  
+curl -s https://raw.githubusercontent.com/HappyLife-page/v2ray/main/v2ray_installation_ws%2Bgrpc_vless%2Btrojan%2Bsocks%2Bshadowsocks.sh | bash -s "你的域名"  
 
 ######################################### 详细配置说明如下 #########################################
 
